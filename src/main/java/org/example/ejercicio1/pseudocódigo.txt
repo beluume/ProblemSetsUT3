@@ -1,0 +1,51 @@
+                                FUNCION Buscar(Comparable<T>criterio):
+
+Lenguaje natural: Recorre el árbol de manera recursiva buscando el nodo
+                  correspondiente al criterio solicitado y devuelve el
+                  nodo que satisface el criterio. Si no se encuentra,
+                  devuelve un nodo nulo.
+
+-------------------------------------------------------------------------------
+Precondicion:     El criterio no debe ser null
+                  El dato ingresado a buscar debe ser válido
+                  Debe existir un árbol con nodos-
+
+Postcondicion:    Si se recorre el arbol y se satisface el criterio,
+                  devuelve el nodo. Si no, devuelve un nodo nulo.
+
+-------------------------------------------------------------------------------
+Pseudocódigo:
+
+// En TArbolGenerico
+procedimiento buscar(Comparable<T>criterio)
+    si raiz != null entonces
+        raiz.buscar(criterio)
+    fin si
+fin procedimiento
+
+// En TNodoArbolGenerico
+procedimiento buscar(Comparable<T>criterio)
+
+    resultado <- null
+
+    si criterio.compareTo(this.dato) == 0 entonces
+
+        resultado <- this
+
+    si no
+
+        unHijo <- primerHijo
+
+        mientras unHijo != null hacer
+
+            si resultado != null entonces
+                devolver resultado
+            fin si
+
+            unHijo <- unHijo.hermanoDerecho
+
+        fin mientras
+
+        devolver resultado
+
+fin procedimiento
