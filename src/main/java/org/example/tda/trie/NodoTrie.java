@@ -16,9 +16,20 @@ public class NodoTrie<T> implements TNodoTrie<T>{
     }
 
     public Entry<T> buscar(String palabra){
-        nodoActual = this;
+        NodoTrie<T> nodoActual = this;
         for (int i = 0; i < palabra.length(); i++) {
-            // char letra = palabra.charAt(i);
+            char letra = palabra.charAt(i);
+            int ascii = letra;
+            if (nodoActual.hijos[ascii] == null) {
+                return null;
+            }
+            nodoActual = nodoActual.hijos[ascii];
+        }
+        if (nodoActual.esPalabra()){
+            return new Entry<>(nodoActual.getDato(), true, palabra);
+        }
+        else {
+            return null;
         }
     }
 
