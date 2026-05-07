@@ -12,14 +12,17 @@ public class Entry<T> {
     }
 
     public String getPalabra() {
+
         return palabra;
     }
 
     public T getDato() {
+
         return dato;
     }
 
     public boolean esPalabra() {
+
         return esPalabra;
     }
 }
