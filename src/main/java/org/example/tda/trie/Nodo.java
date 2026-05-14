@@ -52,7 +52,7 @@ public class Nodo<T> implements TNodoTrie<T>{
             return false;
         }
         nodoActual.palabra = true; //se marca el nodo como el fin de la palabra
-        nodoActual.dato = dato; //se guarda el dato 
+        nodoActual.dato = dato; //se guarda el dato
         return true;
     }
 
@@ -73,10 +73,10 @@ public class Nodo<T> implements TNodoTrie<T>{
 
     public void recorerRecursivo(String palabraAcumulada, Consumer<Entry<T>> consumer) {
 
-        if (this.palabra)
+        if (this.palabra) // si el nodo actual pauta el fin de la palabra
         {
-            Entry<T> nuevaEntrada = new Entry<>(this.dato, true, palabraAcumulada)
-            consumer.accept(nuevaEntrada);
+            Entry<T> nuevaEntrada = new Entry<>(this.dato, true, palabraAcumulada); // creamos objeto 'Entry'. Guarda el dat asociado del nodo, un booleano (que indica si es palabra), y la cadena de texto que forma la palabra
+            consumer.accept(nuevaEntrada); //
 
             for(int i = 0; i < palabraAcumulada.length(); i++) {
                 if(hijos[i] == null)
