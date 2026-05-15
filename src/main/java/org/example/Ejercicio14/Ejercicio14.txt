@@ -1,0 +1,109 @@
+Ejercicio 14 - Tablas Hash
+
+Datos del problema
+
+- Claves (en orden de insercion): 45, 12, 37, 82, 29, 54, 31, 76, 18, 93, 11, 68
+- Estrategias:
+  - Sondeo lineal
+  - Sondeo cuadratico
+  - Encadenamiento separado
+
+1) Tamanio de tabla y justificacion
+
+Se usa m = 13.
+
+Justificacion:
+- Hay 12 claves.
+- 13 es primo y cercano a 12.
+- Permite comparar las 3 estrategias con la misma tabla y sin redimensionar.
+
+2) Funcion hash
+
+Se usa:
+h(k) = k mod 13
+
+Es una funcion simple y adecuada para claves enteras.
+
+3) Estado final de la tabla en cada estrategia
+
+3.1 Sondeo lineal
+
+Indice  Valor
+0       76
+1       11
+2       54
+3       29
+4       82
+5       31
+6       45
+7       18
+8       93
+9       68
+10      -
+11      37
+12      12
+
+3.2 Sondeo cuadratico
+
+Indice  Valor
+0       68
+1       93
+2       54
+3       29
+4       82
+5       31
+6       45
+7       76
+8       -
+9       18
+10      11
+11      37
+12      12
+
+3.3 Encadenamiento separado
+
+Indice  Lista
+0       []
+1       []
+2       [54, 93]
+3       [29, 68]
+4       [82]
+5       [31, 18]
+6       [45]
+7       []
+8       []
+9       []
+10      []
+11      [37, 76, 11]
+12      [12]
+
+4) Cantidad total de colisiones
+
+- Sondeo lineal: 19
+- Sondeo cuadratico: 21
+- Encadenamiento separado: 5
+
+5) Promedio de comparaciones para busquedas exitosas
+
+- Sondeo lineal: 2.58
+- Sondeo cuadratico: 2.75
+- Encadenamiento separado: 1.50
+
+6) Promedio de comparaciones para busquedas no exitosas
+
+Claves usadas para probar busquedas no exitosas:
+10, 23, 44, 70
+
+Comparaciones por estrategia:
+- Sondeo lineal: 4, 1, 6, 3 -> promedio 3.50
+- Sondeo cuadratico: 3, 13, 8, 12 -> promedio 9.00
+- Encadenamiento separado: 0, 1, 1, 2 -> promedio 1.00
+
+7) Comparacion y conclusion
+
+Para este conjunto de claves, encadenamiento separado fue la estrategia que mejor funciono:
+- Menor cantidad de colisiones.
+- Menor promedio de comparaciones en busquedas exitosas.
+- Menor promedio de comparaciones en busquedas no exitosas.
+
+Entre las estrategias de direccion abierta, el sondeo lineal rindio mejor que el cuadratico para este caso puntual.
