@@ -20,7 +20,19 @@ Postcondiciones:
 
 Seudocódigo:
 
+buscar (palabra)
+    nodoActual <- raíz
+    para cada caracter x de palabra hacer
+        si nodoActual no tiene hijo x entonces
+            retornar false
+        fin si
+    nodoActual <- hijo que le corresponde a x
+    fin para
+    retornar nodoActual.esPalabra
+
 Análisis de orden:
+La búsqueda recorre una vez sola cada caracter de la palabra.
+O(x), siendo x el largo de la palabra
 
 2. Obtener la lista de palabras por un prefijo dado.
 
@@ -40,7 +52,21 @@ Postcondiciones:
 
 Seudocódigo:
 
+buscarprefijo (prefijo)
+    nodoActual <- raíz
+    para cada caracter x de prefijo hacer
+        si nodoActual no tiene hijo x entonces
+            retornar listaVacia
+        fin si
+        nodoActual <- hijo que le corresponde a x
+    fin para
+    lista <- nueva lista vacía
+    retornar lista
+
 Análisis de orden:
+Primero se recorre el prefijo completo y luego los subárboles
+Si x es el largo del prefijo y j es la cantidad de nodos recorridos despues
+El órden sería la suma de x+j
 
 3. Insertar una palabra con un dato asociado.
 
@@ -58,7 +84,22 @@ Postcondiciones:
 
 Seudocódigo:
 
+insertar (palabra, dato)
+    nodoActual <- raíz
+    para cada caracter x de palabra hacer
+        si nodoActual no tiene hijo x entonces
+            crear nuevo nodo
+            agregar hijo x
+        fin si
+        nodoActual <- hijo que le corresponde a x
+    fin para
+    nodoActual.esPalabra <- true
+    nodoActual.dato <- dato
+    retornar true
+
 Análisis de orden:
+El insertar recorre todo los caracteres de la palabra una sola vez
+Si la palabra tiene largo x, sería O(x)
 
 4. Eliminar una palabra del Trie.
 
@@ -76,4 +117,22 @@ Postcondiciones:
 
 Seudocódigo:
 
+eliminar (palabra)
+    nodoActual <- raíz
+    para cada caracter x de palabra hacer
+        si nodoActual no tiene hijo x entonces
+            retornar false
+        fin si
+        nodoActual <- hijo que le corresponde a x
+    fin para
+    si nodo.Actual.esPalabra = false entonces
+        retornar false
+    fin si
+    nodoActual.esPalabra <- false
+    nodoActual.dato <- null
+    retornar true
+
 Análisis de orden:
+
+EL eliminar recorre todo los caracteres de la palabra una sola vez
+Si la palabra tiene largo x, sería O(x)

@@ -1,0 +1,28 @@
+En un pequeño pueblo había una biblioteca muy antigua.
+La biblioteca tenía miles de libros y muchas personas iban allí todos los días.
+
+Un estudiante llamado Martín visitaba la biblioteca cada tarde.
+Martín quería aprender programación y estructuras de datos.
+
+Un día encontró un libro sobre árboles y tries.
+El libro explicaba cómo funcionan los árboles binarios, los árboles genéricos y los tries.
+
+Martín pasó muchas horas leyendo el libro.
+El estudiante subrayó palabras importantes como árbol, nodo, búsqueda y algoritmo.
+
+La búsqueda de palabras en un trie puede ser muy rápida.
+Un trie permite encontrar palabras utilizando prefijos.
+
+Por ejemplo, si una persona escribe pro, el trie puede sugerir palabras como programa, progreso y programación.
+
+Martín también aprendió sobre hashing.
+El hashing permite buscar información rápidamente utilizando claves.
+
+Después de varios días de estudio, Martín logró entender mejor las estructuras de datos.
+El estudiante estaba muy contento porque ahora podía resolver ejercicios más difíciles.
+
+La biblioteca seguía llena de estudiantes.
+Muchos estudiantes estudiaban programación.
+Otros estudiantes leían libros de matemática y algoritmos.
+
+Martín decidió volver al día siguiente para seguir aprendiendo.
