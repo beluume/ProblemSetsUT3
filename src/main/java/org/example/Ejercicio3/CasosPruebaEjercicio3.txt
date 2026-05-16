@@ -1,0 +1,21 @@
+Ejercicio 3 - Definicion de casos de prueba
+
+1) Buscar palabra existente con multiples ocurrencias
+- Entrada: "casa"
+- Esperado: lista con 2 ocurrencias
+
+2) Buscar palabra existente con una sola ocurrencia
+- Entrada: "caso"
+- Esperado: lista con 1 ocurrencia
+
+3) Buscar palabra inexistente
+- Entrada: "gato" (antes de insertarla)
+- Esperado: lista vacia
+
+4) Insertar palabra nueva
+- Entrada: insertar("gato", "texto9.txt:1")
+- Esperado: true
+
+5) Insertar palabra repetida
+- Entrada: insertar("gato", "texto9.txt:5")
+- Esperado: false y que buscar("gato") tenga 2 ocurrencias

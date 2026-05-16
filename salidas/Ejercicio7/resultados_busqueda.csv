@@ -1,0 +1,6 @@
+titulo,estructura,memoria_mb,tiempo_ms
+parte4_busqueda,MedicionBuscarLinkedList,0.000274,0.294200
+parte4_busqueda,MedicionBuscarArrayList,0.000283,0.759500
+parte4_busqueda,MedicionBuscarTrie,0.004031,0.741600
+parte4_busqueda,MedicionBuscarHashMap,0.000421,0.063200
+parte4_busqueda,MedicionBuscarTreeMap,0.000422,0.367600

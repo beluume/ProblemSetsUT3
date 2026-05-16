@@ -1,0 +1,10 @@
+casa
+castillo
+programa
+caso
+alimento
+perra
+cascada
+categoria
+casual
+hashmap

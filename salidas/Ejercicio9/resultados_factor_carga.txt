@@ -1,0 +1,27 @@
+Ejercicio 9 - Evolucion del rendimiento de tabla hash
+
+Tabla usada: direccionamiento abierto con sondeo lineal
+Capacidad fija: 1009
+Se inserta desde 70% hasta 99% de factor de carga.
+
+| Factor carga % | Prom. comp. insercion | Prom. comp. busqueda exitosa | Prom. comp. busqueda sin exito |
+|---|---:|---:|---:|
+| 70 | 1.992 | 1.992 | 5.269 |
+| 75 | 2.247 | 2.247 | 6.849 |
+| 80 | 2.704 | 2.704 | 11.814 |
+| 85 | 3.519 | 3.519 | 15.474 |
+| 90 | 4.506 | 4.506 | 28.258 |
+| 91 | 4.892 | 4.892 | 30.003 |
+| 92 | 5.233 | 5.233 | 31.317 |
+| 93 | 5.659 | 5.659 | 33.681 |
+| 94 | 6.140 | 6.140 | 41.051 |
+| 95 | 6.571 | 6.571 | 59.587 |
+| 96 | 7.341 | 7.341 | 120.913 |
+| 97 | 9.394 | 9.394 | 188.646 |
+| 98 | 11.234 | 11.234 | 394.190 |
+| 99 | 15.451 | 15.451 | 447.977 |
+
+Comentario teorico:
+Cuando el factor de carga sube, tambien suben las comparaciones promedio.
+El aumento es mas fuerte en busquedas sin exito, porque hay que recorrer mas posiciones antes de encontrar un lote vacio.
+Esto coincide con lo visto en teoria para direccionamiento abierto lineal.
