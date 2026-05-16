@@ -1,0 +1,13 @@
+=== Ejercicio 16 - Arbol genealogico ===
+Descendientes de Tio Carlos: [Pedro (1990), Tomas (2015), Juani (2018), Ana (1993)]
+Altura del arbol: 3
+Cantidad total de personas: 11
+Generacion 0: [Abuela Rosa (1940)]
+Generacion 1: [Tio Carlos (1965), Mama Laura (1968), Tia Marta (1972)]
+Generacion 2: [Pedro (1990), Ana (1993), Luis (1995), Sofia (1997), Martina (1999)]
+Generacion 3: [Tomas (2015), Juani (2018)]
+Ancestro comun (Sofia, Martina): Abuela Rosa (1940)
+Ancestro comun (Tomas, Juani): Pedro (1990)
+Es Tomas descendiente de Abuela Rosa: true
+Es Tomas descendiente de Tio Carlos: true
+Es Sofia descendiente de Tio Carlos: false

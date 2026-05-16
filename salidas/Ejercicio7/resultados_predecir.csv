@@ -1,0 +1,4 @@
+titulo,estructura,memoria_mb,tiempo_ms
+parte5_predecir,MedicionPredecirTrie,0.004031,0.118275
+parte5_predecir,MedicionPredecirLinkedList,0.000274,0.038810
+parte5_predecir,MedicionPredecirHashMap,0.000421,0.017210

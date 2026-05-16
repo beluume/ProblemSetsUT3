@@ -1,40 +1,101 @@
+package org.example.Ejercicio16;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArbolGenealogico {
 
-    NodoArbol raiz;
+    private final NodoArbol raiz;
 
     public ArbolGenealogico(NodoArbol raiz) {
         this.raiz = raiz;
     }
 
-    public void listarDescendientes(NodoArbol nodo, String nombreBuscado) {
-        if (nodo == null) return;
+    public NodoArbol getRaiz() {
+        return raiz;
+    }
 
-        if (nodo.persona.nombre.equals(nombreBuscado)) {
-            System.out.println("Descendientes de " + nombreBuscado + ":");
-            imprimirTodos(nodo);
-            return;
+    public List<Persona> listarDescendientes(String nombreBuscado) {
+        List<Persona> resultado = new ArrayList<>();
+        NodoArbol nodo = buscarNodo(raiz, nombreBuscado);
+        if (nodo == null) {
+            return resultado;
         }
 
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            listarDescendientes(nodo.hijos[i], nombreBuscado);
+        for (NodoArbol hijo : nodo.getHijos()) {
+            recolectarSubarbol(hijo, resultado);
+        }
+        return resultado;
+    }
+
+    public int calcularAltura() {
+        return calcularAltura(raiz);
+    }
+
+    public int contarPersonas() {
+        return contarPersonas(raiz);
+    }
+
+    public List<Persona> obtenerPersonasGeneracion(int generacionBuscada) {
+        List<Persona> resultado = new ArrayList<>();
+        if (generacionBuscada < 0) {
+            return resultado;
+        }
+        listarGeneracion(raiz, generacionBuscada, 0, resultado);
+        return resultado;
+    }
+
+    public Persona ancestroComunMasCercano(String nombre1, String nombre2) {
+        List<NodoArbol> ruta1 = new ArrayList<>();
+        List<NodoArbol> ruta2 = new ArrayList<>();
+
+        boolean existe1 = encontrarRuta(raiz, nombre1, ruta1);
+        boolean existe2 = encontrarRuta(raiz, nombre2, ruta2);
+        if (!existe1 || !existe2) {
+            return null;
+        }
+
+        NodoArbol ultimoComun = null;
+        int minimo = Math.min(ruta1.size(), ruta2.size());
+        for (int i = 0; i < minimo; i++) {
+            if (ruta1.get(i) == ruta2.get(i)) {
+                ultimoComun = ruta1.get(i);
+            } else {
+                break;
+            }
+        }
+
+        return ultimoComun == null ? null : ultimoComun.getPersona();
+    }
+
+    public boolean esDescendiente(String nombreAncestro, String nombreDescendiente) {
+        NodoArbol ancestro = buscarNodo(raiz, nombreAncestro);
+        if (ancestro == null) {
+            return false;
+        }
+        for (NodoArbol hijo : ancestro.getHijos()) {
+            if (contieneNombre(hijo, nombreDescendiente)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void recolectarSubarbol(NodoArbol nodo, List<Persona> resultado) {
+        resultado.add(nodo.getPersona());
+        for (NodoArbol hijo : nodo.getHijos()) {
+            recolectarSubarbol(hijo, resultado);
         }
     }
 
-    private void imprimirTodos(NodoArbol nodo) {
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            System.out.println(nodo.hijos[i].persona.nombre);
-            imprimirTodos(nodo.hijos[i]);
+    private int calcularAltura(NodoArbol nodo) {
+        if (nodo == null || nodo.getHijos().isEmpty()) {
+            return 0;
         }
-    }
-
-    public int calcularAltura(NodoArbol nodo) {
-        if (nodo == null) return 0;
-        if (nodo.cantHijos == 0) return 0;
 
         int maxAltura = 0;
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            int altura = calcularAltura(nodo.hijos[i]);
+        for (NodoArbol hijo : nodo.getHijos()) {
+            int altura = calcularAltura(hijo);
             if (altura > maxAltura) {
                 maxAltura = altura;
             }
@@ -42,84 +103,75 @@ public class ArbolGenealogico {
         return maxAltura + 1;
     }
 
-    public int contarPersonas(NodoArbol nodo) {
-        if (nodo == null) return 0;
-
+    private int contarPersonas(NodoArbol nodo) {
+        if (nodo == null) {
+            return 0;
+        }
         int total = 1;
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            total += contarPersonas(nodo.hijos[i]);
+        for (NodoArbol hijo : nodo.getHijos()) {
+            total += contarPersonas(hijo);
         }
         return total;
     }
 
-    public void listarGeneracion(NodoArbol nodo, int generacionBuscada, int generacionActual) {
-        if (nodo == null) return;
-
-        if (generacionActual == generacionBuscada) {
-            System.out.println(nodo.persona.nombre + " (" + nodo.persona.anioNacimiento + ")");
+    private void listarGeneracion(NodoArbol nodo, int generacionBuscada, int generacionActual, List<Persona> resultado) {
+        if (nodo == null) {
             return;
         }
-
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            listarGeneracion(nodo.hijos[i], generacionBuscada, generacionActual + 1);
+        if (generacionActual == generacionBuscada) {
+            resultado.add(nodo.getPersona());
+            return;
+        }
+        for (NodoArbol hijo : nodo.getHijos()) {
+            listarGeneracion(hijo, generacionBuscada, generacionActual + 1, resultado);
         }
     }
 
-    public NodoArbol ancestroComun(NodoArbol nodo, String nombre1, String nombre2) {
-        if (nodo == null) return null;
-
-        if (nodo.persona.nombre.equals(nombre1) || nodo.persona.nombre.equals(nombre2)) {
+    private NodoArbol buscarNodo(NodoArbol nodo, String nombreBuscado) {
+        if (nodo == null || nombreBuscado == null) {
+            return null;
+        }
+        if (nombreBuscado.equals(nodo.getPersona().getNombre())) {
             return nodo;
         }
-
-        NodoArbol encontrado1 = null;
-        NodoArbol encontrado2 = null;
-
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            NodoArbol resultado = ancestroComun(nodo.hijos[i], nombre1, nombre2);
-            if (resultado != null) {
-                if (encontrado1 == null) {
-                    encontrado1 = resultado;
-                } else {
-                    encontrado2 = resultado;
-                }
+        for (NodoArbol hijo : nodo.getHijos()) {
+            NodoArbol encontrado = buscarNodo(hijo, nombreBuscado);
+            if (encontrado != null) {
+                return encontrado;
             }
         }
-
-        if (encontrado1 != null && encontrado2 != null) {
-            return nodo;
-        }
-
-        if (encontrado1 != null) return encontrado1;
         return null;
     }
 
-    public boolean esDescendiente(NodoArbol nodo, String nombreAncestro, String nombreDescendiente) {
-        if (nodo == null) return false;
-
-        if (nodo.persona.nombre.equals(nombreAncestro)) {
-            return buscarEnSubarbol(nodo, nombreDescendiente);
+    private boolean contieneNombre(NodoArbol nodo, String nombreBuscado) {
+        if (nodo == null) {
+            return false;
         }
-
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            if (esDescendiente(nodo.hijos[i], nombreAncestro, nombreDescendiente)) {
+        if (nombreBuscado.equals(nodo.getPersona().getNombre())) {
+            return true;
+        }
+        for (NodoArbol hijo : nodo.getHijos()) {
+            if (contieneNombre(hijo, nombreBuscado)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean buscarEnSubarbol(NodoArbol nodo, String nombre) {
-        if (nodo == null) return false;
-
-        for (int i = 0; i < nodo.cantHijos; i++) {
-            if (nodo.hijos[i].persona.nombre.equals(nombre)) {
-                return true;
-            }
-            if (buscarEnSubarbol(nodo.hijos[i], nombre)) {
+    private boolean encontrarRuta(NodoArbol nodo, String nombreBuscado, List<NodoArbol> ruta) {
+        if (nodo == null) {
+            return false;
+        }
+        ruta.add(nodo);
+        if (nombreBuscado.equals(nodo.getPersona().getNombre())) {
+            return true;
+        }
+        for (NodoArbol hijo : nodo.getHijos()) {
+            if (encontrarRuta(hijo, nombreBuscado, ruta)) {
                 return true;
             }
         }
+        ruta.remove(ruta.size() - 1);
         return false;
     }
 }

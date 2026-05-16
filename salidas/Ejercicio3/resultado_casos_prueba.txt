@@ -1,0 +1,25 @@
+=== Ejercicio 3 - Casos de prueba ===
+Caso 1 - buscar palabra existente (casa)
+Esperado: [texto1.txt:1, texto1.txt:8]
+Obtenido: [texto1.txt:1, texto1.txt:8]
+Resultado: OK
+
+Caso 2 - buscar palabra existente con una ocurrencia (caso)
+Esperado: [texto3.txt:7]
+Obtenido: [texto3.txt:7]
+Resultado: OK
+
+Caso 3 - buscar palabra inexistente (gato)
+Esperado: []
+Obtenido: []
+Resultado: OK
+
+Caso 4 - insertar una palabra nueva
+Esperado: true
+Obtenido: true
+Resultado: OK
+
+Caso 5 - insertar palabra repetida (agrega ocurrencia)
+Esperado: insertar=false y ocurrencias=2
+Obtenido: insertar=false, ocurrencias=2
+Resultado: OK
