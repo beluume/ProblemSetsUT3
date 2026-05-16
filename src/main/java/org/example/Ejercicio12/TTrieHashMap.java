@@ -1,3 +1,5 @@
+package org.example.ejercicio12;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -76,13 +78,20 @@ public class TTrieHashMap {
         return resultados;
     }
 
-    private void recolectarPalabras(TNodoTrieHashMap nodo, String palabraActual, ArrayList<String> resultados) {
+    private void recolectarPalabras(TNodoTrieHashMap nodo,
+                                    String palabraActual,
+                                    ArrayList<String> resultados) {
+
         if (nodo.esFin) {
             resultados.add(palabraActual);
         }
 
         for (char c : nodo.hijos.keySet()) {
-            recolectarPalabras(nodo.hijos.get(c), palabraActual + c, resultados);
+            recolectarPalabras(
+                    nodo.hijos.get(c),
+                    palabraActual + c,
+                    resultados
+            );
         }
     }
 
@@ -90,7 +99,9 @@ public class TTrieHashMap {
         ArrayList<Integer> posiciones = new ArrayList<Integer>();
 
         for (int i = 0; i <= texto.length() - patron.length(); i++) {
+
             String subcadena = texto.substring(i, i + patron.length());
+
             if (subcadena.equals(patron)) {
                 posiciones.add(i);
             }
@@ -100,8 +111,11 @@ public class TTrieHashMap {
     }
 
     public void construirArbolDeSufijos(String texto) {
+
         for (int i = 0; i < texto.length(); i++) {
+
             String sufijo = texto.substring(i);
+
             insertar(sufijo);
         }
     }

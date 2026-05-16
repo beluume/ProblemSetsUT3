@@ -1,3 +1,5 @@
+package org.example.ejercicio12;
+
 import java.util.HashMap;
 
 public class TNodoTrieHashMap {
@@ -6,7 +8,9 @@ public class TNodoTrieHashMap {
     HashMap<Character, TNodoTrieHashMap> hijos;
 
     public TNodoTrieHashMap() {
+
         this.esFin = false;
+
         this.hijos = new HashMap<Character, TNodoTrieHashMap>();
     }
 }
