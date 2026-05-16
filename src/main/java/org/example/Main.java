@@ -12,6 +12,9 @@ public class Main {
             IO.println("i = " + i);
         }
     }
+
+    // EJERCICIO 12 
+    
 /*
     public static void main(String[] args) {
 
@@ -91,6 +94,63 @@ public class Main {
         System.out.println("Contiene nan: " + trieSufijos.buscarPatronEnArbol("nan"));
         System.out.println("Contiene xyz: " + trieSufijos.buscarPatronEnArbol("xyz"));
         System.out.println("Contiene ban: " + trieSufijos.buscarPatronEnArbol("ban"));
+    }*/
+
+   //EJERCICIO 16
+
+   /*public class Main {
+
+    public static void main(String[] args) {
+
+        NodoArbol abuela = new NodoArbol(new Persona("Abuela Rosa", 1940));
+
+        NodoArbol hijo1 = new NodoArbol(new Persona("Tio Carlos", 1965));
+        NodoArbol hijo2 = new NodoArbol(new Persona("Mama Laura", 1968));
+        NodoArbol hijo3 = new NodoArbol(new Persona("Tia Marta", 1972));
+
+        NodoArbol nieto1 = new NodoArbol(new Persona("Pedro",   1990));
+        NodoArbol nieto2 = new NodoArbol(new Persona("Ana",     1993));
+        NodoArbol nieto3 = new NodoArbol(new Persona("Luis",    1995));
+        NodoArbol nieto4 = new NodoArbol(new Persona("Sofia",   1997));
+        NodoArbol nieto5 = new NodoArbol(new Persona("Martina", 1999));
+
+        NodoArbol bisnieto1 = new NodoArbol(new Persona("Tomas", 2015));
+        NodoArbol bisnieto2 = new NodoArbol(new Persona("Juani", 2018));
+
+        abuela.agregarHijo(hijo1);
+        abuela.agregarHijo(hijo2);
+        abuela.agregarHijo(hijo3);
+
+        hijo1.agregarHijo(nieto1);
+        hijo1.agregarHijo(nieto2);
+        hijo2.agregarHijo(nieto3);
+        hijo2.agregarHijo(nieto4);
+        hijo3.agregarHijo(nieto5);
+
+        nieto1.agregarHijo(bisnieto1);
+        nieto1.agregarHijo(bisnieto2);
+
+        ArbolGenealogico arbol = new ArbolGenealogico(abuela);
+
+        System.out.println("Descendientes de Tio Carlos:");
+        arbol.listarDescendientes(arbol.raiz, "Tio Carlos");
+
+        System.out.println("\nAltura del arbol: " + arbol.calcularAltura(arbol.raiz));
+
+        System.out.println("\nTotal de personas: " + arbol.contarPersonas(arbol.raiz));
+
+        System.out.println("\nPersonas de la generacion 2:");
+        arbol.listarGeneracion(arbol.raiz, 2, 0);
+
+        System.out.println("\nAncestro comun entre Sofia y Martina:");
+        NodoArbol ac = arbol.ancestroComun(arbol.raiz, "Sofia", "Martina");
+        if (ac != null) {
+            System.out.println(ac.persona.nombre);
+        }
+
+        System.out.println("\nEs Tomas descendiente de Abuela Rosa: " + arbol.esDescendiente(arbol.raiz, "Abuela Rosa", "Tomas"));
+        System.out.println("Es Tomas descendiente de Tio Carlos: " + arbol.esDescendiente(arbol.raiz, "Tio Carlos", "Tomas"));
+        System.out.println("Es Sofia descendiente de Tio Carlos: " + arbol.esDescendiente(arbol.raiz, "Tio Carlos", "Sofia"));
     }*/
 
 }
